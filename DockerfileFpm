@@ -1,11 +1,11 @@
 FROM ghcr.io/hongfs/env:php82-fpm
 
-WORKDIR /hongfs
+WORKDIR /hongfs/public
 
-COPY . .
+COPY . /hongfs
 
 RUN composer install -vvv
 
 EXPOSE 9000
 
-CMD ["cd", "/hongfs/public", "&&", "php-fpm"]
+CMD ["php-fpm"]
