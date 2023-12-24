@@ -6,4 +6,6 @@ COPY . .
 
 RUN composer install -vvv
 
+EXPOSE 9000
+
 CMD ["php", "think", "run", "--port=9000"]
