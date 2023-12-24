@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  cli:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -35,5 +35,29 @@ jobs:
           cd $GITHUB_WORKSPACE
 
           podman build --no-cache --format docker -f ./DockerfileCli -t $GITHUB_REPOSITORY:$name .
+          podman tag $GITHUB_REPOSITORY:$name $REGISTRY/$GITHUB_REPOSITORY:$name
+          podman push $REGISTRY/$GITHUB_REPOSITORY:$name
+  fpm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Fpm
+        env:
+          name: thinkphp80-fpm
+        run: |
+          cd $GITHUB_WORKSPACE
+
+          podman build --no-cache --format docker -f ./DockerfileFpm -t $GITHUB_REPOSITORY:$name .
           podman tag $GITHUB_REPOSITORY:$name $REGISTRY/$GITHUB_REPOSITORY:$name
           podman push $REGISTRY/$GITHUB_REPOSITORY:$name
