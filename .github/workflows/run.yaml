@@ -48,6 +48,8 @@ jobs:
         run: |
           sleep 20s
           
+          curl -vv http://127.0.0.1:80
+          
           curl -vv http://127.0.0.1:8000
 
 #          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:80
