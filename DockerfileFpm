@@ -4,7 +4,8 @@ WORKDIR /hongfs/public
 
 COPY . /hongfs
 
-RUN composer install -vvv
+RUN cd /hongfs && \
+    composer install -vvv
 
 EXPOSE 9000
 
