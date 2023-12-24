@@ -1,4 +1,4 @@
-FROM ghcr.io/hongfs/env:php82-fpm
+FROM ghcr.io/hongfs/env:php82-cli
 
 WORKDIR /hongfs
 
