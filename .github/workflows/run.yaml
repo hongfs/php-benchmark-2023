@@ -17,6 +17,9 @@ jobs:
         image: ghcr.io/hongfs/php-benchmark-2023:thinkphp80-cli
         ports:
           - 9000:9000
+    strategy:
+      matrix:
+        i: [1,2,3]
     steps:
       - name: Run
         run: |
