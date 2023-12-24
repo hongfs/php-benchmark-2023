@@ -50,4 +50,7 @@ jobs:
 
           curl -vv http://127.0.0.1:9001
 
+          podman logs nginx
+          podman logs tp
+
 #          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:80
