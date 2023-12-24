@@ -1,6 +1,6 @@
 FROM ghcr.io/hongfs/env:nginx-tp6-3
 
-WORKDIR /web
+WORKDIR /hongfs
 
 COPY . .
 
