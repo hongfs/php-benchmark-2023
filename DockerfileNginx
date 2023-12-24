@@ -1,4 +1,4 @@
-FROM ghcr.io/hongfs/env:nginx-tp6-2
+FROM ghcr.io/hongfs/env:nginx-tp6-3
 
 WORKDIR /web
 
