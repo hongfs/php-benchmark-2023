@@ -1,0 +1,25 @@
+name: Run
+
+on:
+  push:
+    branches:
+      - main1
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  thinkphp80-cli:
+    runs-on: ubuntu-latest
+    services:
+      tp:
+        image: ghcr.io/hongfs/php-benchmark-2023:thinkphp80-cli
+        ports:
+          - 9000:9000
+    steps:
+      - name: Run
+        run: |
+          sleep 30s
+
+          podman run --rm -it ghcr.io/hongfs/env:wrk --help
