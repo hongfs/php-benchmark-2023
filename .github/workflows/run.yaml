@@ -20,8 +20,8 @@ jobs:
     steps:
       - name: Run
         run: |
-          sleep 30s
+          sleep 10s
           
-          curl -vv http://tp:9000
+          curl -vv http://127.0.0.1:9000
 
           podman run --rm -it ghcr.io/hongfs/env:wrk --help
