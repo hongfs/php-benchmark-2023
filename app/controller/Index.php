@@ -8,7 +8,7 @@ class Index extends BaseController
 {
     public function index()
     {
-        file_get_contents('https://tools.hongfs.cn/v2/random/sleep');
+        file_get_contents('https://cdn-heart.hongfs.cn/');
 
         return '';
     }
