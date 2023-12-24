@@ -27,19 +27,6 @@ jobs:
           podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:9000
   thinkphp80-fpm:
     runs-on: ubuntu-latest
-    services:
-      tp:
-        image: ghcr.io/hongfs/php-benchmark-2023:thinkphp80-fpm
-        ports:
-          - 9000:9000
-      nginx:
-        image: ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
-        env:
-          WEB_DOMAIN: local.hongfs.cn
-          WEB_ROOT: /hongfs
-          WEB_FASTCGI: 127.0.0.1:9000
-        ports:
-          - 9001:9001
     strategy:
       matrix:
         i: [1,2,3]
@@ -47,10 +34,10 @@ jobs:
       - name: Run
         run: |
           podman run -d --net host --name tp ghcr.io/hongfs/php-benchmark-2023:thinkphp80-fpm
-          podman run -d --net host --name nginx -e WEB_DOMAIN=local.hongfs.cn -e WEB_PORT=8088 -e WEB_ROOT=/hongfs -e WEB_FASTCGI=127.0.0.1:9000 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
+          podman run -d --net host --name nginx -e WEB_DOMAIN=local.hongfs.cn -e WEB_PORT=9001 -e WEB_ROOT=/hongfs -e WEB_FASTCGI=127.0.0.1:9000 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
           sleep 20s
 
-          curl -vv http://127.0.0.1:8088
+          curl -vv http://127.0.0.1:9001
 
           podman logs nginx
           podman logs tp
