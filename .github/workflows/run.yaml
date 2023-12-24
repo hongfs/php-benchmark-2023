@@ -37,9 +37,4 @@ jobs:
           podman run -d --net host --name nginx -e WEB_DOMAIN=local.hongfs.cn -e WEB_PORT=9001 -e WEB_ROOT=/hongfs -e WEB_FASTCGI=127.0.0.1:9000 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
           sleep 20s
 
-          curl -vv http://127.0.0.1:9001
-
-          podman logs nginx
-          podman logs tp
-
-#          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:80
+          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:9001
