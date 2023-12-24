@@ -21,7 +21,5 @@ jobs:
       - name: Run
         run: |
           sleep 10s
-          
-          curl -vv http://127.0.0.1:9000
 
-          podman run --rm -it ghcr.io/hongfs/env:wrk --help
+          podman run --rm -it ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:9000
