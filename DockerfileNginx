@@ -8,7 +8,7 @@ EXPOSE 80
 
 ENV WEB_DOMAIN="0.0.0.0" \
     WEB_ROOT="/web" \
-    WEB_FASTCGI="127.0.0.1:9000"
+    WEB_FASTCGI="tp:9000"
 
 CMD envsubst '${WEB_DOMAIN}.${WEB_ROOT},${WEB_FASTCGI}' < /etc/nginx/templates/default.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
 
