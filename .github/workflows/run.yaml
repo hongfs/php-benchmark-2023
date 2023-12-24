@@ -3,7 +3,7 @@ name: Run
 on:
   push:
     branches:
-      - main1
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -21,5 +21,7 @@ jobs:
       - name: Run
         run: |
           sleep 30s
+          
+          curl -vv http://tp:9000
 
           podman run --rm -it ghcr.io/hongfs/env:wrk --help
