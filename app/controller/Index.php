@@ -8,7 +8,16 @@ class Index extends BaseController
 {
     public function index()
     {
-        file_get_contents('https://cdn-heart.hongfs.cn/');
+        $options = [
+            'http' => [
+                'method' => "GET",
+                'header' => "User-Agent: hongfs\r\n"
+            ]
+        ];
+
+        $context = stream_context_create($options);
+
+        file_get_contents('https://cdn-heart.hongfs.cn/', false, $context);
 
         return '';
     }
