@@ -8,4 +8,4 @@ RUN composer install -vvv
 
 EXPOSE 9000
 
-CMD ["php-fpm"]
+CMD ["cd", "/hongfs/public", "&&", "php-fpm"]
