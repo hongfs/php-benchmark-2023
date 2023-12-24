@@ -32,20 +32,13 @@ jobs:
         image: ghcr.io/hongfs/php-benchmark-2023:thinkphp80-fpm
         ports:
           - 9000:9000
-      nginx:
-        image: ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
-        env:
-          WEB_DOMAIN: local.hongfs.cn
-          WEB_ROOT: /web
-          WEB_FASTCGI: tp:9000
-        ports:
-          - 8000:80
     strategy:
       matrix:
         i: [1,2,3]
     steps:
       - name: Run
         run: |
+          podman run -d --net host --name nginx -p 8000:80 -e WEB_DOMAIN=local.hongfs.cn -e WEB_ROOT=/web -e WEB_FASTCGI=127.0.0.1:9000 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
           sleep 20s
           
           curl -vv http://127.0.0.1:8000
