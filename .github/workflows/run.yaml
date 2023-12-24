@@ -37,7 +37,9 @@ jobs:
           podman pull ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
 
           podman run -d -p 9000:9000 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-fpm
-          podman run -d -p 8000:80 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
+          podman run -d --name nginx -p 8000:80 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
+          
+          podman logs -f nginx
 
           sleep 10s
 
