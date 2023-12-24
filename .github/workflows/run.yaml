@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Run
         run: |
-          sleep 10s
+          
+          curl ip.hongfs.cn
+#          sleep 10s
 
-          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:9000
+#          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:9000
