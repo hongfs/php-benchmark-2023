@@ -34,10 +34,10 @@ jobs:
       - name: Run
         run: |
           podman run -d -p 9000:9000 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-fpm
-          podman run -d -p 80:80 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
+          podman run -d -p 8000:80 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
 
           sleep 10s
 
-          curl -vv http://127.0.0.1:80
+          curl -vv http://127.0.0.1:8000
 
 #          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:80
