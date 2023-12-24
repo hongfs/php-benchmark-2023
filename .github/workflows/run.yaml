@@ -46,7 +46,7 @@ jobs:
     steps:
       - name: Run
         run: |
-          sleep 10s
+          sleep 20s
           
           curl -vv http://127.0.0.1:8000
 
