@@ -18,6 +18,7 @@ jobs:
     steps:
       - name: Run
         run: |
+          podman run -d --net host --name db ghcr.io/hongfs/env:mysql-test-2023
           podman run -d --net host --name tp ghcr.io/hongfs/php-benchmark-2023:workerman4-cli
           sleep 5s
 
