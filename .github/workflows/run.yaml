@@ -30,8 +30,8 @@ jobs:
     steps:
       - name: Run
         run: |
-          podman run -d --net host --name db -e DB_NAME=customers -e DB_PASS=hongfs ghcr.io/hongfs/env:mysql-test-2023
-          podman run -d --net host --name tp ghcr.io/hongfs/php-benchmark-2023:thinkphp80-cli
+          podman run -d --net host --name db ghcr.io/hongfs/env:mysql-test-2023
+          podman run -d --net host --name tp -e DB_NAME=customers -e DB_PASS=hongfs ghcr.io/hongfs/php-benchmark-2023:thinkphp80-cli
           sleep 5s
 
           podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c500 -d1m --latency http://127.0.0.1:9000
@@ -43,8 +43,8 @@ jobs:
     steps:
       - name: Run
         run: |
-          podman run -d --net host --name db -e DB_NAME=customers -e DB_PASS=hongfs ghcr.io/hongfs/env:mysql-test-2023
-          podman run -d --net host --name tp ghcr.io/hongfs/php-benchmark-2023:thinkphp80-fpm
+          podman run -d --net host --name db ghcr.io/hongfs/env:mysql-test-2023
+          podman run -d --net host --name tp -e DB_NAME=customers -e DB_PASS=hongfs ghcr.io/hongfs/php-benchmark-2023:thinkphp80-fpm
           podman run -d --net host --name nginx -e WEB_DOMAIN=local.hongfs.cn -e WEB_PORT=9001 -e WEB_ROOT=/hongfs -e WEB_FASTCGI=127.0.0.1:9000 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
           sleep 5s
 
