@@ -21,7 +21,7 @@ jobs:
           podman run -d --net host --name tp ghcr.io/hongfs/php-benchmark-2023:workerman4-cli
           sleep 5s
 
-          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:9000
+          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c500 -d1m --latency http://127.0.0.1:9000
   thinkphp80-cli:
     runs-on: ubuntu-latest
     strategy:
@@ -33,7 +33,7 @@ jobs:
           podman run -d --net host --name tp ghcr.io/hongfs/php-benchmark-2023:thinkphp80-cli
           sleep 5s
 
-          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:9000
+          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c500 -d1m --latency http://127.0.0.1:9000
   thinkphp80-fpm:
     runs-on: ubuntu-latest
     strategy:
@@ -46,4 +46,4 @@ jobs:
           podman run -d --net host --name nginx -e WEB_DOMAIN=local.hongfs.cn -e WEB_PORT=9001 -e WEB_ROOT=/hongfs -e WEB_FASTCGI=127.0.0.1:9000 ghcr.io/hongfs/php-benchmark-2023:thinkphp80-nginx
           sleep 5s
 
-          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c10 -d1m --latency http://127.0.0.1:9001
+          podman run --rm -it --net host ghcr.io/hongfs/env:wrk -t4 -c500 -d1m --latency http://127.0.0.1:9001
