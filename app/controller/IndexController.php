@@ -2,24 +2,18 @@
 
 namespace app\controller;
 
+use app\model\Order;
 use support\Request;
 
 class IndexController
 {
     public function index(Request $request)
     {
-        $options = [
-            'http' => [
-                'method' => "GET",
-                'header' => "User-Agent: hongfs\r\n"
-            ]
-        ];
+        $id = random_int(10100, 10200);
 
-        $context = stream_context_create($options);
+        $data = Order::find($id);
 
-        file_get_contents('https://cdn-heart.hongfs.cn/', false, $context);
-
-        return '';
+        return json($data);
     }
 
     public function view(Request $request)

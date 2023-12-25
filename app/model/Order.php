@@ -4,21 +4,21 @@ namespace app\model;
 
 use support\Model;
 
-class Test extends Model
+class Order extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'test';
+    protected $table = 'orders';
 
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'orderNumber';
 
     /**
      * Indicates if the model should be timestamped.
