@@ -3,5 +3,6 @@
 /vendor
 *.log
 .env
+composer.lock
 /tests/tmp
 /tests/.phpunit.result.cache
